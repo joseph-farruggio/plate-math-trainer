@@ -1,0 +1,54 @@
+[x-cloak] {
+  display: none;
+}
+
+.purple {
+  background-color: #211643;
+}
+
+.dark-purple {
+  background-color: #1b1236;
+}
+
+.the-bar {
+  width: 263px;
+  height: 60px;
+}
+
+.plateOnBar {
+  height: 100%;
+}
+
+.plate-container {
+  width: 169px;
+  height: 104px;
+}
+
+.plate-55 {
+  width: 25%;
+}
+
+.plate-45 {
+  width: 22.6%;
+}
+
+.plate-35 {
+  width: 17.7%;
+}
+
+.plate-25 {
+  width: 14%;
+}
+
+.plate-15 {
+  width: 9.8%;
+}
+
+.plate-10 {
+  width: 7.7%;
+}
+
+.plate-5,
+.plate-2-5 {
+  width: 5%;
+}
