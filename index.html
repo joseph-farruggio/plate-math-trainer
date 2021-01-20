@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="select-none">
+<html lang="en" class="select-none purple">
 <head>
   <meta charset="UTF-8">
 	<title>Plate Math Trainer</title>
@@ -26,7 +26,9 @@
 			<div class="grid gap-8 mt-6 items-center">
 				<!-- 	The Target -->
 				<div class="col-start-1 col-end-2 row-start-1 row-end-2">
-					<p class="text-white text-xl font-bold" x-text="sumPlates()"></p>
+					<p x-cloak x-show="mode === 'calc'" class="text-white text-xl font-bold" x-text="sumPlates()"></p>
+					<input type="number" x-model.number="target" x-on:input.debounce.750="setBar()" x-cloak x-show="mode === 'dfy'" class="bg-white py-3 px-3 rounded-sm">
+
 				</div>
 
 				<!-- 	The bar & plates -->
@@ -39,7 +41,7 @@
 					<div class="plate-container flex flex-row-reverse items-center relative z-20 col-start-1 col-end-2 row-start-1 row-stat-2">
 						<!-- The plates -->
 						<template x-for="plate in platesOnBar" :key="plate.lbs">
-							<div x-html="plate.html" class="plateOnBar flex items-center" :style="`width: ${plate.width}`"></div>
+							<div x-html="plate.barHtml" class="plateOnBar flex items-center" :style="`width: ${plate.width}`"></div>
 						</template>
 					</div>
 				</div>
@@ -49,87 +51,19 @@
 
 	<div class="px-6 pt-12 pb-32 purple">
 		<div class="container max-w-screen-sm mx-auto">
+			
+			<!-- Show plates for calc mode -->
+			<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center" x-show="mode == 'calc'">
+				<template x-for="plate in plates" :key="plate.lbs">
+					<button x-html="plate.buttonHtml" @click="addPlate(plate.lbs)" class="text-center flex items-center justify-center"></button>
+				</template>				
+			</div>
+
+			<!-- Show plates for dfy mode -->
 			<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center">
-
-				<button @click="addPlate(55)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-red-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-red-900 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-red-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								55
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(45)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-blue-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-blue-900 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-blue-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								45
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(35)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-yellow-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-yellow-700 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								35
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(25)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-green-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-green-700 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-green-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								25
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(15)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								15
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(10)" class="text-center flex items-center justify-center">
-					<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
-						<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
-							<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								10
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button @click="addPlate(5)" class="text-center flex items-center justify-center">
-					<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
-						<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
-							<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								5
-							</div>
-						</div>
-					</div>
-				</button>
-
-				<button)" @click="addPlate(2.5)" class="text-center flex items-center justify-center">
-					<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
-						<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
-							<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-								2.5
-							</div>
-						</div>
-					</div>
-				</button>
+				<template x-for="plate in platesOnBar" :key="plate.lbs">
+					<div x-html="plate.buttonHtml" class="plateOnBar flex items-center"></div>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -141,10 +75,12 @@
 		</div>
 	</div>
 
-	<div x-cloak x-show="menuIsOpen" class="fixed top-0 left-0 z-40 h-screen w-screen dark-purple pt-4 pb-8 overflow-y-scroll">
+	<!-- Settings -->
+
+	<div x-cloak x-show="menuIsOpen" class="fixed top-0 left-0 z-40 h-screen w-screen dark-purple px-6 pt-4 pb-8 overflow-y-scroll">
 		<div class="container max-w-screen-sm mx-auto">
 			<!-- 	Header	 -->
-			<div class="flex justify-between items-center px-6">
+			<div class="flex justify-between items-center">
 				<h1 class="text-xl text-white font-bold">Plate Math Trainer</h1>
 				<button class="p-3" @click="menuIsOpen = false">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5 text-white">
@@ -152,13 +88,33 @@
 					</svg>
 				</button>
 			</div>
+		</div>
 
-			<div class="px-6 pt-12 pb-32 purple">
-				<div class="container max-w-screen-sm mx-auto">
+		<div class="container max-w-screen-sm mx-auto mt-6">
+
+			<h2 class="text-white font-bold text-2xl mb-8">Select mode:</h2>
+			<div class="flex gap-3 items-center">
+				<button @click="mode = 'dfy'" class="bg-purple-900 text-white px-20 py-3 font-bold text-lg flex items-center justify-start gap-3">
+					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'calc'}"></span> Enter weight
+				</button>
+
+				<button @click="mode = 'calc'" class="bg-purple-900 text-white px-20 py-3 font-bold text-lg flex items-center justify-start gap-3">
+					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'dfy'}"></span> Add plates
+				</button>
+			
+			</div>
+
+			<div x-show="mode == 'dfy'" class="mt-16">
+				<h2 class="text-white font-bold text-2xl mb-8">Toggle available plates:</h2>
+				<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center">
 					
+					<template x-for="plate in plates" :key="plate.lbs">
+						<button x-html="plate.buttonHtml" @click="togglePlate(plate.lbs)" :class="{'opacity-40': isInactive(plate.lbs)}" class="text-center flex items-center justify-center"></button>
+					</template>	
+
 				</div>
 			</div>
-		</div>
+		</div>	
 	</div>
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js'></script><script  src="./script.js"></script>
