@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 function app() {
   return {
     menuIsOpen: false,
@@ -5,49 +6,49 @@ function app() {
     plates: [
     {
       lbs: 55,
-      html: '<div class="bg-red-400 w-full h-full"></div>',
+      html: '<div class="bg-red-400 border border-red-500 w-full h-full rounded-sm"></div>',
       width: "25%",
-      active: false },
+    },
 
     {
       lbs: 45,
-      html: '<div class="bg-blue-400 w-full h-full"></div>',
+      html: '<div class="bg-blue-400 border border-blue-500 w-full h-full rounded-sm"></div>',
       width: "22.6%",
-      active: true },
+    },
 
     {
       lbs: 35,
-      html: '<div class="bg-yellow-400 w-full h-full"></div>',
+      html: '<div class="bg-yellow-400 border border-yellow-500 w-full h-full rounded-sm"></div>',
       width: "17.7%",
-      active: false },
+    },
 
     {
       lbs: 25,
-      html: '<div class="bg-green-400 w-full h-full"></div>',
+      html: '<div class="bg-green-400 border border-green-500 w-full h-full rounded-sm"></div>',
       width: "14%",
-      active: true },
+    },
 
     {
       lbs: 15,
-      html: '<div class="bg-gray-400 w-full h-full"></div>',
+      html: '<div class="bg-gray-400 border border-gray-500 w-full h-full rounded-sm"></div>',
       width: "9.8%",
-      active: false },
+    },
 
     {
       lbs: 10,
-      html: '<div class="bg-gray-400 w-full h-full"></div>',
+      html: '<div class="bg-gray-400 border border-gray-500 w-full h-full rounded-sm"></div>',
       width: "7.7%",
-      active: true },
+    },
 
     {
       lbs: 5,
-      html: '<div class="bg-gray-300 w-full h-1/2"></div>',
+      html: '<div class="bg-gray-300 border border-gray-400 w-full h-1/2 rounded-sm"></div>',
       width: "5%",
-      active: true },
+    },
 
     {
       lbs: 2.5,
-      html: '<div class="bg-gray-200 w-full h-1/3"></div>',
+      html: '<div class="bg-gray-200 border border-gray-300 w-full h-1/3 rounded-sm"></div>',
       width: "5%",
       active: true }],
 
@@ -97,3 +98,4 @@ function app() {
     } };
 
 }
+/* jshint ignore:end */

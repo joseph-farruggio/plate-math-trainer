@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" class="select-none">
 <head>
   <meta charset="UTF-8">
 	<title>Plate Math Trainer</title>
@@ -51,7 +51,7 @@
 		<div class="container max-w-screen-sm mx-auto">
 			<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center">
 
-				<button [x-cloak] x-show="!isInactive(55)" @click="addPlate(55)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(55)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-red-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-red-900 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-red-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -61,7 +61,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(45)" @click="addPlate(45)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(45)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-blue-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-blue-900 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-blue-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -71,7 +71,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(35)" @click="addPlate(35)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(35)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-yellow-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-yellow-700 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -81,7 +81,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(25)" @click="addPlate(25)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(25)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-green-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-green-700 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-green-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -91,7 +91,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(15)" @click="addPlate(15)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(15)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -101,7 +101,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(10)" @click="addPlate(10)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(10)" class="text-center flex items-center justify-center">
 					<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
 						<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
 							<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -111,7 +111,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(5)" @click="addPlate(5)" class="text-center flex items-center justify-center">
+				<button @click="addPlate(5)" class="text-center flex items-center justify-center">
 					<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
 						<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
 							<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -121,7 +121,7 @@
 					</div>
 				</button>
 
-				<button [x-cloak] x-show="!isInactive(2.5)" @click="addPlate(2.5)" class="text-center flex items-center justify-center">
+				<button)" @click="addPlate(2.5)" class="text-center flex items-center justify-center">
 					<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
 						<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
 							<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
@@ -155,89 +155,7 @@
 
 			<div class="px-6 pt-12 pb-32 purple">
 				<div class="container max-w-screen-sm mx-auto">
-					<h2 class="text-white font-bold text-2xl mb-8">Toggle available plates</h2>
-					<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center">
-
-						<button @click="togglePlate(55)" :class="{'opacity-40': isInactive(55)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-red-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-red-900 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-red-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										55
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(45)" :class="{'opacity-40': isInactive(45)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-blue-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-blue-900 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-blue-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										45
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(35)" :class="{'opacity-40': isInactive(35)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-yellow-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-yellow-700 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										35
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(25)" :class="{'opacity-40': isInactive(25)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-green-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-green-700 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-green-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										25
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(15)" :class="{'opacity-40': isInactive(15)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										15
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(10)" :class="{'opacity-40': isInactive(10)}" class="text-center flex items-center justify-center">
-							<div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
-								<div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
-									<div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										10
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(5)" :class="{'opacity-40': isInactive(5)}" class="text-center flex items-center justify-center">
-							<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
-								<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
-									<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										5
-									</div>
-								</div>
-							</div>
-						</button>
-
-						<button @click="togglePlate(2.5)" :class="{'opacity-40': isInactive(2.5)}" class="text-center flex items-center justify-center">
-							<div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
-								<div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
-									<div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
-										2.5
-									</div>
-								</div>
-							</div>
-						</button>
-					</div>
+					
 				</div>
 			</div>
 		</div>
