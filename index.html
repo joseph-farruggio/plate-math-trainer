@@ -27,12 +27,12 @@
 				<!-- 	The Target -->
 				<div class="col-start-1 col-end-2 row-start-1 row-end-2">
 					<p x-cloak x-show="mode === 'calc'" class="text-white text-xl font-bold" x-text="sumPlates()"></p>
-					<input type="number" x-model.number="target" x-on:input.debounce.750="setBar()" x-cloak x-show="mode === 'dfy'" class="bg-white py-3 px-3 rounded-sm">
+					<input type="number" x-model.number="target" x-on:input.debounce.750="setBar()" x-cloak x-show="mode === 'dfy'" class="bg-white py-3 px-3 rounded-sm w-full">
 
 				</div>
 
 				<!-- 	The bar & plates -->
-				<div class="col-start-2 col-end-5 row-start-1 row-end-2 grid items-center justify-end overflow-hidden">
+				<div class="col-start-1 col-end-2 row-start-2 row-end-3 grid items-center justify-end overflow-hidden">
 					<!-- 	The bar -->
 					<svg xmlns="http://www.w3.org/2000/svg" width="263" height="60" viewBox="0 0 263 60" class="the-bar col-start-1 col-end-2 row-start-1 row-stat-2">
 						<path id="Union_2" data-name="Union 2" d="M168.368,60V45.155H0V14.227H168.368V0h20.578V22.268H263V37.732H188.947V60Z" fill="#291b54" />
@@ -76,7 +76,6 @@
 	</div>
 
 	<!-- Settings -->
-
 	<div x-cloak x-show="menuIsOpen" class="fixed top-0 left-0 z-40 h-screen w-screen dark-purple px-6 pt-4 pb-8 overflow-y-scroll">
 		<div class="container max-w-screen-sm mx-auto">
 			<!-- 	Header	 -->
@@ -93,16 +92,16 @@
 		<div class="container max-w-screen-sm mx-auto mt-6">
 
 			<h2 class="text-white font-bold text-2xl mb-8">Select mode:</h2>
-			<div class="flex gap-3 items-center">
-				<button @click="mode = 'dfy'" class="bg-purple-900 text-white px-20 py-3 font-bold text-lg flex items-center justify-start gap-3">
+			
+				<button @click="mode = 'dfy'" :class="{'bg-opacity-20': mode == 'calc'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
 					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'calc'}"></span> Enter weight
 				</button>
 
-				<button @click="mode = 'calc'" class="bg-purple-900 text-white px-20 py-3 font-bold text-lg flex items-center justify-start gap-3">
-					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'dfy'}"></span> Add plates
+				<button @click="mode = 'calc'" :class="{'bg-opacity-20': mode == 'dfy'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
+					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'dfy'}"></span> Add up plates
 				</button>
 			
-			</div>
+			
 
 			<div x-show="mode == 'dfy'" class="mt-16">
 				<h2 class="text-white font-bold text-2xl mb-8">Toggle available plates:</h2>
