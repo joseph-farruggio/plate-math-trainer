@@ -186,6 +186,7 @@ function app() {
           }
         }
       }
+      document.getElementById("enterWeight").blur();
     },
 
     isInactive(id) {

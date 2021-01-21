@@ -27,7 +27,9 @@
 				<!-- 	The Target -->
 				<div class="col-start-1 col-end-2 row-start-1 row-end-2">
 					<p x-cloak x-show="mode === 'calc'" class="text-white text-xl font-bold" x-text="sumPlates()"></p>
-					<input type="number" x-model.number="target" x-on:input.debounce.750="setBar()" x-cloak x-show="mode === 'dfy'" class="bg-white py-3 px-3 rounded-sm w-full">
+					<label> <span class="text-white block mb-2">Enter weight:</span>
+						<input id="enterWeight" type="number" x-model.number="target" x-on:input.debounce.750="setBar()" x-cloak x-show="mode === 'dfy'" class="bg-white py-3 px-3 rounded-sm w-full">
+					</label>
 
 				</div>
 
