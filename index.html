@@ -34,7 +34,7 @@
 				</div>
 
 				<!-- 	The bar & plates -->
-				<div class="col-start-1 col-end-2 row-start-2 row-end-3 grid items-center justify-end overflow-hidden">
+				<div class="col-start-1 col-end-2 row-start-2 row-end-3 grid items-center justify-end overflow-hidden" x-show="mode == 'calc'">
 					<!-- 	The bar -->
 					<svg xmlns="http://www.w3.org/2000/svg" width="263" height="60" viewBox="0 0 263 60" class="the-bar col-start-1 col-end-2 row-start-1 row-stat-2">
 						<path id="Union_2" data-name="Union 2" d="M168.368,60V45.155H0V14.227H168.368V0h20.578V22.268H263V37.732H188.947V60Z" fill="#291b54" />
@@ -62,9 +62,12 @@
 			</div>
 
 			<!-- Show plates for dfy mode -->
-			<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center">
-				<template x-for="plate in platesOnBar" :key="plate.lbs">
-					<div x-html="plate.buttonHtml" class="plateOnBar flex items-center"></div>
+			<div class="grid grid-cols-2 gap-5 gap-y-8 items-center justify-center" x-show="mode == 'dfy' && plateCount.length">
+				<template x-for="(item, index) in plateCount" :key="index">
+					<div>
+						<span class="text-white text-lg" x-text="'(' + item.count + ')'"></span>	
+						<div x-html="item.plate.buttonHtml" class="plateOnBar flex items-center"></div>
+					</div>
 				</template>
 			</div>
 		</div>
@@ -95,11 +98,11 @@
 
 			<h2 class="text-white font-bold text-2xl mb-8">Select mode:</h2>
 			
-				<button @click="mode = 'dfy'" :class="{'bg-opacity-20': mode == 'calc'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
+				<button @click="setMode('dfy')" :class="{'bg-opacity-20': mode == 'calc'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
 					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'calc'}"></span> Enter weight
 				</button>
 
-				<button @click="mode = 'calc'" :class="{'bg-opacity-20': mode == 'dfy'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
+				<button @click="setMode('calc')" :class="{'bg-opacity-20': mode == 'dfy'}" class="w-full mb-3 bg-indigo-900 text-white px-3 py-3 font-bold text-lg flex items-center justify-start gap-3">
 					<span class="rounded-full h-4 w-4 bg-green-500" :class="{'bg-opacity-20': mode == 'dfy'}"></span> Add up plates
 				</button>
 			

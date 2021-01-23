@@ -3,6 +3,7 @@ function app() {
   return {
     menuIsOpen: false,
     platesOnBar: [],
+    plateCount: [],
     mode: 'dfy',
     target: 45,
     plates: [
@@ -11,7 +12,7 @@ function app() {
       lbs: 55,
       barHtml: '<div class="bg-red-400 border border-red-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-red-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-red-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-red-900 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-red-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             55
@@ -21,13 +22,12 @@ function app() {
       `,
       width: "25%",
     },
-
     {
       active: true,
       lbs: 45,
       barHtml: '<div class="bg-blue-400 border border-blue-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-blue-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-blue-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-blue-900 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-blue-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             45
@@ -37,13 +37,12 @@ function app() {
       `,
       width: "22.6%",
     },
-
     {
       active: true,
       lbs: 35,
       barHtml: '<div class="bg-yellow-400 border border-yellow-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-yellow-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-yellow-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-yellow-700 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             35
@@ -53,13 +52,12 @@ function app() {
       `,
       width: "17.7%",
     },
-
     {
       active: true,
       lbs: 25,
       barHtml: '<div class="bg-green-400 border border-green-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-green-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-green-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-green-700 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-green-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             25
@@ -69,20 +67,18 @@ function app() {
       `,
       width: "14%",
     },
-
     {
       active: true,
       lbs: 15,
       barHtml: '<div class="bg-gray-400 border border-gray-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             15
           </div>
         </div>
-      </div>
-      `,
+      </div>`,
       width: "9.8%",
     },
 
@@ -91,7 +87,7 @@ function app() {
       lbs: 10,
       barHtml: '<div class="bg-gray-400 border border-gray-500 w-full h-full rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center">
+      <div class="h-40 w-40 bg-gray-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-32 w-32 bg-gray-700 rounded-full flex items-center justify-center">
           <div class="h-20 w-20 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             10
@@ -107,7 +103,7 @@ function app() {
       lbs: 5,
       barHtml: '<div class="bg-gray-300 border border-gray-400 w-full h-1/2 rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
+      <div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
           <div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             5
@@ -123,7 +119,7 @@ function app() {
       lbs: 2.5,
       barHtml: '<div class="bg-gray-200 border border-gray-300 w-full h-1/3 rounded-sm"></div>',
       buttonHtml: `
-      <div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center">
+      <div class="h-24 w-24 bg-gray-400 rounded-full flex items-center justify-center mx-auto">
         <div class="h-20 w-20 bg-gray-700 rounded-full flex items-center justify-center">
           <div class="h-10 w-10 bg-gray-400 rounded-full flex items-center justify-center font-bold text-white text-lg">
             2.5
@@ -132,15 +128,20 @@ function app() {
       </div>
       `,
       width: "5%",
-    }],
-
+    }
+    ],
+    
+    setMode(mode) {
+      this.mode = mode;
+      this.reset();
+    },
     addPlate(id) {
       console.log(id);
       this.platesOnBar.push(this.plates.find(({ lbs }) => lbs === id));
     },
-
     reset() {
       this.platesOnBar = [];
+      this.plateCount = [];
     },
 
     undo() {
@@ -173,19 +174,35 @@ function app() {
     setBar() {
       this.reset()
       let sum = 45; // account for the bar weight
+      var plateIndex = 0; // Separate counter for this.plateCount[]
+      
       for (i = 0; i < this.plates.length; i++) {
+        // Initial plate added to this.plateCount[]
+        var count = 1;
+        
         // Plate must be active
         if (this.plates[i].active === true) {
+
+          // If this plate doesn't put us past the target
           if (sum + this.plates[i].lbs * 2 <= this.target) {
+            
+            // Only push one plate to this.plateCount[]. Then update the count.
+            this.plateCount.push({plate: this.plates[i], count: count});
+
             // Keep adding the same plate until you meet or exceed the target
             while (sum + this.plates[i].lbs * 2 <= this.target) {
               sum = sum + this.plates[i].lbs * 2;
               this.platesOnBar.push(this.plates[i]);
-              console.log('add: ' + this.plates[i].lbs + ' and sum is ' + sum);
+             
+              this.plateCount[plateIndex].count = count;
+              count++;
             }
+            plateIndex++;
           }
         }
       }
+      
+      console.log(JSON.parse(JSON.stringify(this.plateCount)));
       document.getElementById("enterWeight").blur();
     },
 
